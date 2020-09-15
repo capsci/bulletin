@@ -14,14 +14,14 @@ Section Name
 ```
 
 ## Phase 1 - Bare Bones Basic
-* [ ] Group commits into buckets based on emojis
-  * [ ] Check for reference [Gimoji](https://gist.github.com/parmentf/035de27d6ed1dce0b36a)
-* [ ] Support sections Features, Fixes, Enhancements, Misc
-* [ ] Select commit range based on tags
+* [x] Group commits into buckets based on emojis
+  * [x] Check for reference [Gimoji](https://gist.github.com/parmentf/035de27d6ed1dce0b36a)
+* [x] Support sections Features, Fixes, Enhancements, Misc
+* [x] Select commit range based on tags
 
 ## Phase 2 - Bare Bones Extended
 * [ ] Group commits into buckets based on emojis or text
-* [ ] Select commit range based on tags or commit ids
+* [x] Select commit range based on tags or commit ids
 
 ##
 * [ ] Add necessary tests
