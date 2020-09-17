@@ -20,7 +20,7 @@ Section Name
 * [x] Select commit range based on tags
 
 ## Phase 2 - Bare Bones Extended
-* [ ] Group commits into buckets based on emojis or text
+* [x] Group commits into buckets based on emojis or text
 * [x] Select commit range based on tags or commit ids
 
 ##
