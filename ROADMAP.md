@@ -24,9 +24,9 @@ Section Name
 * [x] Select commit range based on tags or commit ids
 
 ##
-* [ ] Add necessary tests
-* [ ] Add/update README.md/ CONTRIBUTING.md
-* [ ] Create usable release
+* [x] Add necessary tests
+* [x] Add/update README.md/ CONTRIBUTING.md
+* [x] Create usable release
 
 
 ## Phase 3 - Customization
