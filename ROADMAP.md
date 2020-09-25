@@ -30,7 +30,7 @@ Section Name
 
 
 ## Phase 3 - Customization
-* [ ] Add feature to generate TODO list (i.e. no sections from above, but list of commits)
+* [x] Add feature to generate TODO list (i.e. no sections from above, but list of commits)
 * [ ] Allow ordering/grouping of commits (commit dates/authors/etc)
 * [ ] Allow text replacement
   * [ ] replace text to another text

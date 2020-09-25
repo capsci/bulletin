@@ -12,6 +12,7 @@ import (
 
 // Arguments
 var from, to string
+var todo bool
 var layout section.Layout
 
 func init() {
@@ -19,9 +20,15 @@ func init() {
 	flag.StringVar(&from, "from", "", "from commit id/tag")
 	flag.StringVar(&to, "to", "", "to commit id/tag")
 
+	flag.BoolVar(&todo, "todo", false, "Generate a todo list for releasenotes")
+
 	flag.Parse()
 	if len(from) == 0 || len(to) == 0 {
 		log.Fatal("Please provide from and to range")
+	}
+
+	if todo {
+		return
 	}
 
 	// Sections : features,fixes,enhancements,documentations and misc
@@ -57,9 +64,15 @@ func main() {
 
 	commit := iterator.Next()
 	for commit != nil {
-		layout.BucketToSection(commit)
+		if todo {
+			layout.AddSectionIfAbsent(commit.Author.Name)
+			layout.AddToSection(commit.Author.Name, commit)
+		} else {
+			layout.BucketToSection(commit)
+		}
 		commit = iterator.Next()
 	}
 
+	layout.PrintSectioNames()
 	fmt.Println(layout.GenerateDocumentation())
 }
