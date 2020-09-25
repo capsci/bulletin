@@ -9,42 +9,31 @@ import (
 	"github.com/capsci/bulletin/test/utils"
 )
 
-// TestAddEmojiShortCodes tests if we are able to add emoji shortcodes to the
-func TestAddEmojiShortCodes(t *testing.T) {
-	const EmojiSC = ":emoji"
-	sect := s.Section{}
-	sect.AddEmojiShortcodes([]string{EmojiSC})
-	_, found := utils.FindInSlice(sect.EmojiShortcodes, EmojiSC)
-	if !found {
-		t.Error("Emoji not added to section")
-	}
-	test.Expected(t, len(sect.EmojiShortcodes), 1, "Incorrect number of items in the section")
-}
+const qual1 = ":qual1"
+const qual2 = ":qual2"
 
 // TestAddEmojiShortCodes tests if we are able to add emoji shortcodes to the
-func TestAddTextMarkers(t *testing.T) {
-	const TextSC = ":text"
+func TestAddTextQualifiers(t *testing.T) {
 	sect := s.Section{}
-	sect.AddTextMarkers([]string{TextSC})
-	_, found := utils.FindInSlice(sect.TextShortcodes, TextSC)
+	sect.AddTextQualifiers([]string{qual1})
+	sect.AddTextQualifiers(qual2)
+	_, found := utils.FindInSlice(sect.TextQualifiers, qual1)
 	if !found {
-		t.Error("Text Marker not added to section")
+		t.Error("Text qualifier list not added to section")
 	}
-	test.Expected(t, len(sect.TextShortcodes), 1, "Incorrect number of items in the section")
+	_, found = utils.FindInSlice(sect.TextQualifiers, qual2)
+	if !found {
+		t.Error("Text qualifier not added to section")
+	}
+	test.Expected(t, len(sect.TextQualifiers), 2, "Incorrect number of items in the section")
 }
 
 func TestBelongsEmoji(t *testing.T) {
-	const EmojiSC = ":emoji"
-	const TextSC = ":text"
-	const EmojiCommit = EmojiSC + " adds a new emoji commit"
-	const TextCommit = TextSC + " adds a new text marker commit"
+	const qual1Commit = qual1 + " adds a new commit"
+	const qual2Commit = qual2 + " adds another commit"
 	sect := s.Section{}
-	sect.AddEmojiShortcodes([]string{EmojiSC})
-	sect.AddTextMarkers([]string{TextSC})
+	sect.AddTextQualifiers(qual1)
 
-	test.Expected(t, sect.Belongs(EmojiCommit, true), true, "Emoji commit incorrectly classified as not belongs")
-	test.Expected(t, sect.Belongs(TextCommit, true), false, "Text commit incorrectly classified as belongs")
-
-	test.Expected(t, sect.Belongs(EmojiCommit, false), false, "Emoji commit incorrectly classified as belongs")
-	test.Expected(t, sect.Belongs(TextCommit, false), true, "Text commit incorrectly classified as not belongs")
+	test.Expected(t, sect.Belongs(qual1), true, "Commit incorrectly classified as not belongs")
+	test.Expected(t, sect.Belongs(qual2), false, "Commit incorrectly classified as belongs")
 }

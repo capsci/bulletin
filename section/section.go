@@ -1,6 +1,7 @@
 package section
 
 import (
+	"log"
 	"strings"
 
 	"github.com/capsci/bulletin/git"
@@ -9,20 +10,21 @@ import (
 
 // Section is a section in bulletin
 type Section struct {
-	Name            string
-	EmojiShortcodes []string
-	TextShortcodes  []string
-	Commits         []*git.Commit
+	Name           string
+	TextQualifiers []string
+	Commits        []*git.Commit
 }
 
-// AddEmojiShortcodes adds new emojis to existing list
-func (s *Section) AddEmojiShortcodes(emojis []string) {
-	s.EmojiShortcodes = append(s.EmojiShortcodes, emojis...)
-}
-
-// AddTextMarkers adds new emojis to existing list
-func (s *Section) AddTextMarkers(markers []string) {
-	s.TextShortcodes = append(s.TextShortcodes, markers...)
+// AddTextQualifiers adds new emojis to existing list
+func (s *Section) AddTextQualifiers(qualifiers interface{}) {
+	switch qualifiers.(type) {
+	case []string:
+		s.TextQualifiers = append(s.TextQualifiers, qualifiers.([]string)...)
+	case string:
+		s.TextQualifiers = append(s.TextQualifiers, qualifiers.(string))
+	default:
+		log.Fatal("ghj")
+	}
 }
 
 // AddCommit adds commit to section
@@ -31,14 +33,8 @@ func (s *Section) AddCommit(commit *git.Commit) {
 }
 
 // Belongs check if the commit message belongs to a section based on commit message
-func (s *Section) Belongs(commitMessage string, matchEmoji bool) bool {
-	var markers []string
-	if matchEmoji {
-		markers = s.EmojiShortcodes
-	} else {
-		markers = s.TextShortcodes
-	}
-	for _, marker := range markers {
+func (s *Section) Belongs(commitMessage string) bool {
+	for _, marker := range s.TextQualifiers {
 		if strings.Contains(commitMessage, marker) {
 			return true
 		}

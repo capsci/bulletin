@@ -8,7 +8,6 @@ import (
 type Layout struct {
 	sections       []*Section
 	defaultSection *Section
-	emojiMarker    bool
 }
 
 // AddSection adds new section
@@ -21,20 +20,10 @@ func (l *Layout) SetDefaultSection(section *Section) {
 	l.defaultSection = section
 }
 
-// BucketOnEmojiMarkers buckets commits based on emojis
-func (l *Layout) BucketOnEmojiMarkers() {
-	l.emojiMarker = true
-}
-
-// BucketOnTextMarkers buckets commits based on emojis
-func (l *Layout) BucketOnTextMarkers() {
-	l.emojiMarker = false
-}
-
 // BucketToSection buckets to appropriate section
 func (l *Layout) BucketToSection(commit *git.Commit) {
 	for _, section := range l.sections {
-		if section.Belongs(commit.FullCommitMessage(), l.emojiMarker) {
+		if section.Belongs(commit.FullCommitMessage()) {
 			section.AddCommit(commit)
 			return
 		}
