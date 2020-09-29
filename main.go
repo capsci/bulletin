@@ -50,8 +50,6 @@ func init() {
 
 	misc := section.Section{Name: "Misc"}
 
-	fmt.Println(features.TextQualifiers)
-
 	layout.AddSection(&features)
 	layout.AddSection(&fixes)
 	layout.AddSection(&enhancements)
@@ -61,6 +59,10 @@ func init() {
 
 func main() {
 	iterator := git.GetLogs(from, to)
+
+	if todo {
+		iterator.SortBySubject()
+	}
 
 	commit := iterator.Next()
 	for commit != nil {
@@ -73,6 +75,5 @@ func main() {
 		commit = iterator.Next()
 	}
 
-	layout.PrintSectioNames()
 	fmt.Println(layout.GenerateDocumentation())
 }

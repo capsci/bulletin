@@ -2,6 +2,7 @@ package git
 
 import (
 	"fmt"
+	"sort"
 )
 
 // CommitIterator provides interator to run through available commits
@@ -46,6 +47,29 @@ func (ci *CommitIterator) Next() *Commit {
 	}
 	ci.offset++
 	return &ci.commits[ci.offset-1]
+}
+
+// SortBySubject sorts commits based on Subject
+func (ci *CommitIterator) SortBySubject() {
+	ci.sortByField(SortBySubject)
+}
+
+// SortByAuthor sorts commits based on Subject
+func (ci *CommitIterator) SortByAuthor() {
+	ci.sortByField(SortByAuthor)
+}
+
+// SortByTime sorts commits based on Subject
+func (ci *CommitIterator) SortByTime() {
+	ci.sortByField(SortByTime)
+}
+
+func (ci *CommitIterator) sortByField(field SortBy) {
+	cs := &commitSorter{
+		commits: ci.commits,
+		sortBy:  field,
+	}
+	sort.Sort(cs)
 }
 
 // Set sets commit value from records
