@@ -32,17 +32,18 @@ Section Name
 ## Phase 3 - Customization
 * [x] Add feature to generate TODO list (i.e. no sections from above, but list of commits)
 * [x] Allow ordering/grouping of commits (commit dates/authors/etc)
-* [ ] Allow text replacement
-  * [ ] replace text to another text
-  * [ ] replace text to link
+* [x] Allow text replacement
+  * [x] replace text to another text
+  * [x] replace text to link
 
 ## Phase 4 - YAML
 * [ ] Provide YAML configuration
 * [ ] Check if YAML configuration is valid
 * [ ] Allow specifying fields to include in release notes
-* [ ] Allow specifying field to group grouping is based on 
+* [ ] Allow specifying field to group grouping is based on
 * [ ] Group commits into buckets based pattern/emojis specified in specified in YAML
 * [ ] Allow user specified sections
+* [ ] Allow text/link replacements using regex patterns
 
 ## Phase 5 - a11y
 * [ ] Provide templates for release notes
