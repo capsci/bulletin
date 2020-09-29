@@ -1,0 +1,10 @@
+# Define your sections
+sections:
+  - name: Features
+    qualifiers: [":sparkles:",":racehorse:",":zap:",":ok_hand:",":tada:",":white_check_mark:","feat:"]
+  - name: Fixes
+    qualifiers: [":bug:",":ambulance:",":red:","fix:"]
+  - name: Enhancements
+    qualifiers: [":art:",":hammer:",":construction:",":wrench:",":ok_hand:",":closed_lock_with_key:","refactor:","style:","chore:","test:"]
+  - name: Documentations
+    qualifiers: [":books:",":notebook:","docs:"]

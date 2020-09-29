@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/capsci/bulletin/config"
+
 	"github.com/capsci/bulletin/section"
 
 	"github.com/capsci/bulletin/git"
@@ -16,6 +18,11 @@ var todo bool
 var layout section.Layout
 
 func init() {
+
+	cfg, err := config.GenerateFromYML("./config.yml")
+	if err != nil {
+		log.Fatal(err)
+	}
 	// Parse and validate arguments
 	flag.StringVar(&from, "from", "", "from commit id/tag")
 	flag.StringVar(&to, "to", "", "to commit id/tag")
@@ -31,29 +38,14 @@ func init() {
 		return
 	}
 
-	// Sections : features,fixes,enhancements,documentations and misc
-	features := section.Section{Name: "Features"}
-	features.AddTextQualifiers([]string{":sparkles:", ":racehorse:", ":zap:", ":ok_hand:", ":tada:", ":white_check_mark:"})
-	features.AddTextQualifiers("feat:")
-
-	fixes := section.Section{Name: "Fixes"}
-	fixes.AddTextQualifiers([]string{":bug:", ":ambulance:", ":red:"})
-	fixes.AddTextQualifiers("fix:")
-
-	enhancements := section.Section{Name: "Enhancements"}
-	enhancements.AddTextQualifiers([]string{":art:", ":hammer:", ":construction:", ":wrench:", ":ok_hand:", ":closed_lock_with_key:"})
-	enhancements.AddTextQualifiers([]string{"refactor:", "style:", "chore:", "test:"})
-
-	documentations := section.Section{Name: "Documentations"}
-	documentations.AddTextQualifiers([]string{":books:", ":notebook:"})
-	documentations.AddTextQualifiers("docs:")
+	for _, sect := range cfg.Sections {
+		layout.AddSection(&section.Section{
+			Name:           sect.Name,
+			TextQualifiers: sect.Qualifiers,
+		})
+	}
 
 	misc := section.Section{Name: "Misc"}
-
-	layout.AddSection(&features)
-	layout.AddSection(&fixes)
-	layout.AddSection(&enhancements)
-	layout.AddSection(&documentations)
 	layout.SetDefaultSection(&misc)
 }
 

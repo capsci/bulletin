@@ -37,12 +37,12 @@ Section Name
   * [x] replace text to link
 
 ## Phase 4 - YAML
-* [ ] Provide YAML configuration
+* [x] Provide YAML configuration
 * [ ] Check if YAML configuration is valid
 * [ ] Allow specifying fields to include in release notes
 * [ ] Allow specifying field to group grouping is based on
-* [ ] Group commits into buckets based pattern/emojis specified in specified in YAML
-* [ ] Allow user specified sections
+* [x] Group commits into buckets based pattern/emojis specified in specified in YAML
+* [x] Allow user specified sections
 * [ ] Allow text/link replacements using regex patterns
 
 ## Phase 5 - a11y
