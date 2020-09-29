@@ -43,7 +43,7 @@ Section Name
 * [ ] Allow specifying field to group grouping is based on
 * [x] Group commits into buckets based pattern/emojis specified in specified in YAML
 * [x] Allow user specified sections
-* [ ] Allow text/link replacements using regex patterns
+* [x] Allow text/link replacements using regex patterns
 
 ## Phase 5 - a11y
 * [ ] Provide templates for release notes

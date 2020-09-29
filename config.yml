@@ -8,3 +8,10 @@ sections:
     qualifiers: [":art:",":hammer:",":construction:",":wrench:",":ok_hand:",":closed_lock_with_key:","refactor:","style:","chore:","test:"]
   - name: Documentations
     qualifiers: [":books:",":notebook:","docs:"]
+replace:
+  text:
+    - from: for
+      to: rof
+  link:
+    - from: README.md
+      to: https://github.com/capsci/bulletin/blob/master/README.md

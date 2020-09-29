@@ -12,6 +12,16 @@ type Config struct {
 		Name       string   `yaml:"name"`
 		Qualifiers []string `yaml:"qualifiers"`
 	} `yaml:"sections"`
+	Replace struct {
+		Text []struct {
+			From string `yaml:"from"`
+			To   string `yaml:"to"`
+		} `yaml:"text"`
+		Link []struct {
+			From string `yaml:"from"`
+			To   string `yaml:"to"`
+		} `yaml:"link"`
+	} `yaml:"replace"`
 }
 
 // Validate the Config loaded from YAML
